@@ -1,5 +1,5 @@
 {
-    "name": "bensquire/php-image-optim",
+    "name": "npr/php-image-optim",
     "type": "library",
     "description": "A library to aid in image optimisation",
     "keywords": ["image", "php", "optimisation", "png", "jpg", "gif"],
