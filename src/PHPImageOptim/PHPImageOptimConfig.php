@@ -2,6 +2,11 @@
 
 namespace PHPImageOptim;
 
+/**
+ * Class PHPImageOptimConfig
+ *
+ * Separates out environment-specific and library-specific configurations
+ */
 class PHPImageOptimConfig
 {
     public static $config = [
