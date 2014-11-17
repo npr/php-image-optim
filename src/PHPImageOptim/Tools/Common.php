@@ -1,16 +1,36 @@
 <?php
 
 namespace PHPImageOptim\Tools;
+use PHPImageOptim\PHPImageOptimConfig;
 use Exception;
 
 class Common
 {
+    protected $config;
+
     protected $binaryPath = '';
     protected $imagePath = '';
     protected $outputPath = '';
     protected $originalFileSize = '';
     protected $finalFileSize = '';
     protected $optimisationLevel = 1;
+
+    /**
+     * Establishes configuration for child class and sets default binary path
+     */
+    public function __construct()
+    {
+        $config = PHPImageOptimConfig::$config;
+
+        $classArr = explode('\\', get_class($this));
+        $class = end($classArr);
+        $this->config = !empty($config['libs'][$class]) ? $config['libs'][$class] : [];
+
+        if(!empty($binary = $this->config['binary']))
+        {
+            $this->setBinaryPath($binary);
+        }
+    }
 
     /**
      * Sets the path of the executable
@@ -99,5 +119,28 @@ class Common
     {
         $this->finalFileSize = filesize($this->imagePath);
         return $this;
+    }
+
+    /**
+     * gets version based on configuration
+     */
+    public function checkVersion()
+    {
+        if(!empty($version = ' ' . $this->config['version'] . ' '))
+        {
+            exec($this->binaryPath . $version, $aOutput, $iResult);
+        }
+    }
+
+    /**
+     * gets option string for command line optimization execution
+     * @return string command line options
+     */
+    public function getOptions()
+    {
+        if(!empty($options = $this->config['options']))
+        {
+            return ' ' . implode(' ', $options) . ' ';
+        }
     }
 }
