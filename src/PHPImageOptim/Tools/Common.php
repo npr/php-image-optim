@@ -4,7 +4,7 @@ namespace PHPImageOptim\Tools;
 use PHPImageOptim\PHPImageOptimConfig;
 use Exception;
 
-class Common
+abstract class Common implements ToolsInterface
 {
     protected $config;
 

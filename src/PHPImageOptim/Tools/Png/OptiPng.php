@@ -6,7 +6,7 @@ use PHPImageOptim\Tools\Common;
 use PHPImageOptim\PHPImageOptimConfig;
 use Exception;
 
-class OptiPng extends Common implements ToolsInterface
+class OptiPng extends Common
 {
     public function optimise()
     {
